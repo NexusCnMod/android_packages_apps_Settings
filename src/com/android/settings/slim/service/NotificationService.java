@@ -173,7 +173,7 @@ public class NotificationService extends Service {
         mSharedPrefs.registerOnSharedPreferenceChangeListener(mSharedPrefsObserver);
 
         Intent intent = new Intent(QuietHoursHelper.QUIET_HOURS_START);
-        mContext.sendBroadcast(intent);
+        mContext.sendBroadcastAsUser(intent, UserHandle.CURRENT);
     }
 
     @Override
@@ -196,7 +196,7 @@ public class NotificationService extends Service {
         mSharedPrefs.unregisterOnSharedPreferenceChangeListener(mSharedPrefsObserver);
 
         Intent intent = new Intent(QuietHoursHelper.QUIET_HOURS_STOP);
-        mContext.sendBroadcast(intent);
+        mContext.sendBroadcastAsUser(intent, UserHandle.CURRENT);
 
         super.onDestroy();
     }
@@ -214,7 +214,7 @@ public class NotificationService extends Service {
     }
 
     private static void destroyQuietHour(Context context) {
-        mNotificationManager.cancelAsUser(null, QUIETHOUR_NOTIFICATION_ID, UserHandle.ALL);
+        mNotificationManager.cancel(QUIETHOUR_NOTIFICATION_ID);
     }
 
     private static void notifyQuietHour(Context context) {
@@ -275,8 +275,7 @@ public class NotificationService extends Service {
                  PendingIntent.getBroadcast(context, 0, stop, PendingIntent.FLAG_CANCEL_CURRENT));
         }
 
-        mNotificationManager.notifyAsUser(null, QUIETHOUR_NOTIFICATION_ID, b.build(),
-                    UserHandle.ALL);
+        mNotificationManager.notify(QUIETHOUR_NOTIFICATION_ID, b.build());
     }
 
     private class SettingsObserver extends ContentObserver {
