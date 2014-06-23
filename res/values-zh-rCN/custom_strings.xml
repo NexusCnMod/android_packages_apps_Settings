@@ -186,13 +186,15 @@
     <string name="quiet_hours_enabled">启用静默时段</string>
     <string name="quiet_hours_enabled_on">静默时段将被执行</string>
     <string name="quiet_hours_enabled_off">静默时段将不影响正常通知行为</string>
-    <string name="quiet_hours_start">静默起始时间</string>
+    <string name="quiet_hours_start">启用静默时段</string>
     <string name="quiet_hours_start_summary">何时开始执行静默时段</string>
     <string name="quiet_hours_end">静默结束时间</string>
     <string name="quiet_hours_end_summary">何时结束执行静默时段</string>
-    <string name="quiet_hours_ringer_title">静音电话铃声</string>
-    <string name="quiet_hours_ringer_on">电话铃声将不被播放</string>
-    <string name="quiet_hours_ringer_off">电话铃声将正常播放</string>
+    <string name="quiet_hours_ringer">手机铃声</string>
+    <string name="quiet_hours_ringer_allow_all">所有号码</string>
+    <string name="quiet_hours_ringer_allow_contacts">通讯录中的联系人</string>
+    <string name="quiet_hours_ringer_allow_starred">仅限常用联系人</string>
+    <string name="quiet_hours_ringer_mute_all">全部静音</string>
     <string name="quiet_hours_mute">静音通知</string>
     <string name="quiet_hours_mute_on">将不播放任何声音</string>
     <string name="quiet_hours_mute_off">所有声音将正常播放</string>
@@ -216,6 +218,7 @@
     <string name="quiet_hours_auto_disabled">已禁用</string>
     <string name="quiet_hours_auto_enabled">所有号码</string>
     <string name="quiet_hours_auto_contacts">通讯录中的联系人</string>
+    <string name="quiet_hours_auto_starred">仅限常用联系人</string>
     <string name="quiet_hours_bypass_group">静默时段例外</string>
     <string name="quiet_hours_sms_code_null">[闹铃]</string>
     <string name="quiet_hours_sms_bypass_title">文本消息例外</string>
@@ -232,6 +235,31 @@
     <string name="quiet_hours_alarm_and">" 和 "</string>
     <string name="quiet_hours_alarm_dialog_title">静默时段已被跳过</string>
     <string name="quiet_hours_alarm_message">" 符合了跳过静默时段的需求！"</string>
+    <string name="quiet_hours_enable_title">静默模式启动</string>
+    <string name="quiet_hours_notification">触摸配置.</string>
+    <string name="quiet_hours_enable_notification_title">通知</string>
+    <string name="quiet_hours_enable_notification_summary">在静默时段显示通知</string>
+    <string name="quiet_hours_notification_disable">禁用</string>
+    <string name="quiet_hours_notification_pause">暂停</string>
+    <string name="quiet_hours_paused_title">暂停静默时段</string>
+    <string name="quiet_hours_notification_resume">恢复</string>
+    <string name="quiet_hours_snoozed_title">暂停静默时段 <xliff:g id="time">%1$d</xliff:g> 分钟</string>
+    <string name="quiet_hours_notification_snooze">贪睡模式</string>
+    <string name="quiet_hours_snooze_time">贪睡延时</string>
+    <string name="quiet_hours_notification_stop">停止</string>
+    <string name="quiet_hours_start">现在开始</string>
+    <string name="quiet_hours_whitelist_bypass_calls">来电</string>
+    <string name="quiet_hours_whitelist_bypass_messages">短信</string>
+    <string name="quiet_hours_add_whitelist_number">添加联系人</string>
+    <string name="quiet_hours_whitelist">例外联系人</string>
+    <string name="quiet_hours_whitelist_summary">静默时段例外联系人</string>
+    <string name="quiet_hours_whitelist_button_delete">删除</string>
+    <string name="quiet_hours_whitelist_edit_dialog_title">编辑联系人</string>
+    <string name="quiet_hours_options_group">选项</string>
+    <string name="quiet_hours_ringer_allow_whitelist">仅限例外联系人</string>
+    <string name="quiet_hours_bypass_options_group">闹钟选项</string>
+    <string name="quiet_hours_auto_sms_summary">对来电或短信自动回复短信</string>
+    <string name="quiet_hours_bypass_summary">如果收到例外联系的短信或者来电将启用闹钟.</string>
 
     <!-- time range preference -->
     <string name="start_time_title">起始</string>
@@ -314,5 +342,37 @@
     <!-- Lockscreen rotation -->
     <string name="display_lockscreen_rotation_title">锁屏界面</string>
     <string name="bluetooth_accept_all_files">接受所有文件</string>
+
+    <!-- Increasing ringtone volume -->
+    <string name="checkbox_increasing_ring">启用</string>
+    <string name="increasing_ring_title">铃音渐响</string>
+    <string name="increasing_ring_min_volume_title">起始音量</string>
+    <string name="increasing_ring_volume_notice">注意:\n设定起始音量可能会比你设置最高音量要高.</string>
+    <string name="increasing_ring_interval_title">铃音渐响间隔</string>
+    <string name="increasing_ring_interval_eachring">在每个铃声</string>
+    <string name="increasing_ring_interval_half_second">0.5 秒</string>
+    <string name="increasing_ring_interval_1second">1 秒</string>
+    <string name="increasing_ring_interval_2seconds">2 秒</string>
+    <string name="increasing_ring_interval_3seconds">3 秒</string>
+    <string name="increasing_ring_interval_5seconds">5 秒</string>
+    <string name="increasing_ring_interval_10seconds">10 秒</string>
+
+    <!-- Headset plug -->
+    <string name="headset_settings">耳机</string>
+    <string name="headset_plug_enable_title">插入耳机动作</string>
+    <string name="headset_plug_positive_title">禁用</string>
+    <string name="headset_plug_neutral_title">默认</string>
+    <string name="headset_plug_neutral_summary">系统默认音乐程序</string>
+    <string name="headset_plug_music_active_title">禁用活动音频</string>
+    <string name="headset_plug_music_active_summary">不执行快捷音乐播放</string>
+    <string name="headset_plug_app_running_title">执行快捷动作</string>
+    <string name="headset_plug_app_running_nothing">空</string>
+    <string name="headset_plug_app_running_front">向前移动</string>
+    <string name="headset_plug_actions_title">移除</string>
+    <string name="headset_plug_actions_disabled">空</string>
+    <string name="headset_plug_actions_front">向前移动</string>
+    <string name="headset_plug_actions_kill">结束程序</string>
+    <string name="headset_plug_force_actions_title">强制移除</string>
+    <string name="headset_plug_force_actions_summary">无论是否运行都执行移除操作</string>
 </resources>
 
