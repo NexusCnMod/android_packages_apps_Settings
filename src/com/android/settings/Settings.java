@@ -79,6 +79,7 @@ import com.android.settings.inputmethod.InputMethodAndLanguageSettings;
 import com.android.settings.inputmethod.KeyboardLayoutPickerFragment;
 import com.android.settings.inputmethod.SpellCheckersSettings;
 import com.android.settings.inputmethod.UserDictionaryList;
+import com.android.settings.location.LocationEnabler;
 import com.android.settings.location.LocationSettings;
 import com.android.settings.nfc.AndroidBeam;
 import com.android.settings.nfc.PaymentSettings;
@@ -94,6 +95,15 @@ import com.android.settings.wifi.WifiEnabler;
 import com.android.settings.wifi.WifiSettings;
 import com.android.settings.wifi.p2p.WifiP2pSettings;
 import com.android.settings.slim.QuietHours;
+import com.android.settings.HomeSettings;
+
+import org.omnirom.omnigears.ButtonSettings;
+import org.omnirom.omnigears.interfacesettings.BarsSettings;
+import org.omnirom.omnigears.interfacesettings.MenusSettings;
+import org.omnirom.omnigears.interfacesettings.NotificationPanelSettings;
+import org.omnirom.omnigears.chameleonos.ActiveDisplaySettings;
+import org.omnirom.omnigears.interfacesettings.MoreInterfaceSettings;
+import com.brewcrewfoo.performance.activities.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -316,7 +326,9 @@ public class Settings extends PreferenceActivity
 
     @Override
     public boolean onIsMultiPane() {
-        return false;
+        boolean preferMultiPane = getResources().getBoolean(
+                com.android.internal.R.bool.preferences_prefer_dual_pane);
+        return preferMultiPane;
     }
 
     private static final String[] ENTRY_FRAGMENTS = {
@@ -365,7 +377,16 @@ public class Settings extends PreferenceActivity
         PaymentSettings.class.getName(),
         KeyboardLayoutPickerFragment.class.getName(),
         BlacklistSettings.class.getName(),
-        QuietHours.class.getName()
+        QuietHours.class.getName(),
+        ButtonSettings.class.getName(),
+        BarsSettings.class.getName(),
+        MenusSettings.class.getName(),
+        NotificationPanelSettings.class.getName(),
+        ActiveDisplaySettings.class.getName(),
+        MoreInterfaceSettings.class.getName(),
+        AppOpsSummary.class.getName(),
+        HomeSettings.class.getName(),
+        MainActivity.class.getName()
     };
 
     @Override
@@ -817,6 +838,7 @@ public class Settings extends PreferenceActivity
 
         private final WifiEnabler mWifiEnabler;
         private final BluetoothEnabler mBluetoothEnabler;
+        private final LocationEnabler mLocationEnabler;
         private AuthenticatorHelper mAuthHelper;
         private DevicePolicyManager mDevicePolicyManager;
 
@@ -834,7 +856,9 @@ public class Settings extends PreferenceActivity
         static int getHeaderType(Header header) {
             if (header.fragment == null && header.intent == null) {
                 return HEADER_TYPE_CATEGORY;
-            } else if (header.id == R.id.wifi_settings || header.id == R.id.bluetooth_settings) {
+            } else if (header.id == R.id.wifi_settings
+                       || header.id == R.id.bluetooth_settings
+                       || header.id == R.id.location_settings) {
                 return HEADER_TYPE_SWITCH;
             } else if (header.id == R.id.security_settings) {
                 return HEADER_TYPE_BUTTON;
@@ -880,6 +904,7 @@ public class Settings extends PreferenceActivity
             // Switches inflated from their layouts. Must be done before adapter is set in super
             mWifiEnabler = new WifiEnabler(context, new Switch(context));
             mBluetoothEnabler = new BluetoothEnabler(context, new Switch(context));
+            mLocationEnabler = new LocationEnabler(context, new Switch(context));
             mDevicePolicyManager = dpm;
         }
 
@@ -949,8 +974,10 @@ public class Settings extends PreferenceActivity
                     // Would need a different treatment if the main menu had more switches
                     if (header.id == R.id.wifi_settings) {
                         mWifiEnabler.setSwitch(holder.switch_);
-                    } else {
+                    } else if (header.id == R.id.bluetooth_settings) {
                         mBluetoothEnabler.setSwitch(holder.switch_);
+                    } else if (header.id == R.id.location_settings) {
+                        mLocationEnabler.setSwitch(holder.switch_);
                     }
                     updateCommonHeaderView(header, holder);
                     break;
@@ -1024,11 +1051,13 @@ public class Settings extends PreferenceActivity
         public void resume() {
             mWifiEnabler.resume();
             mBluetoothEnabler.resume();
+            mLocationEnabler.resume();
         }
 
         public void pause() {
             mWifiEnabler.pause();
             mBluetoothEnabler.pause();
+            mLocationEnabler.pause();
         }
     }
 
@@ -1162,4 +1191,6 @@ public class Settings extends PreferenceActivity
     public static class PrintJobSettingsActivity extends Settings { /* empty */ }
     public static class PerformanceSettingsActivity extends Settings { /* empty */ }
     public static class BlacklistSettingsActivity extends Settings { /* empty */ }
+    public static class ButtonSettingsActivity extends Settings { /* empty */ }
+    public static class MainActivityActivity extends Settings { /* empty */ }
 }
